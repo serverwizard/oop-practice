@@ -37,4 +37,31 @@ public class PasswordValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("비밀번호는 최소 8자 이상 12자 이하여야 한다.");
     }
+
+    /**
+     * 테스트 하기 쉬운 코드를 작성하다 보면 더 낮은 결합도를 가진 설계를 얻을 수 있다.
+     */
+    @DisplayName("비밀번호가 최소 8자 이상, 12자 이하면 예외가 발생하지 않는다.")
+    @Test
+    void validatePasswordTest2() {
+        // given
+        PasswordValidator passwordValidator = new PasswordValidator();
+
+        // when, then
+        assertThatCode(() -> passwordValidator.validate2(new CorrectPasswordGenerator()))
+                .doesNotThrowAnyException();
+    }
+
+
+    @DisplayName("비밀번호가 8자 미만 또는 12자 초과하는 경우 IllegalArgumentException 예외가 발생한다.")
+    @Test
+    void validatePasswordTest3() {
+        // given
+        PasswordValidator passwordValidator = new PasswordValidator();
+
+        // when, then
+        assertThatCode(() -> passwordValidator.validate2(new WrongPasswordGenerator()))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("비밀번호는 최소 8자 이상 12자 이하여야 한다.");
+    }
 }
