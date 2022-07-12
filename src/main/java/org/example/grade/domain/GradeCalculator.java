@@ -10,18 +10,18 @@ public class GradeCalculator {
     }
 
     public GradeResult calculateGrade() {
-        double sum = 0;
+        double multipliedCreditAndCourseGrade = 0;
         for (Course course : courses) {
-            sum += course.getCredit() * course.getGradeToNumber(); // TODO Refactoring : 학점수×교과목 평점
+            multipliedCreditAndCourseGrade += course.getCredit() * course.getGradeToNumber(); // TODO Refactoring : 학점수×교과목 평점
         }
+        int totalCompletedCredit = getTotalCompletedCredit();
+        double averageGrade = multipliedCreditAndCourseGrade / totalCompletedCredit;
 
-        double averageGrade = sum / getTotalCompletedCredit(courses);
-
-        return new GradeResult(averageGrade, getTotalCompletedCredit(courses));
+        return new GradeResult(averageGrade, totalCompletedCredit);
     }
 
     // 총 이수한 학점
-    private int getTotalCompletedCredit(List<Course> courses) {
+    private int getTotalCompletedCredit() {
         return courses.stream()
                 .mapToInt(Course::getCredit)
                 .sum();
