@@ -14,11 +14,15 @@ public class Course {
         this.grade = grade;
     }
 
+    public double multiplyCreditAndCourseGrade() {
+        return credit * getGradeToNumber();
+    }
+
     public int getCredit() {
         return this.credit;
     }
 
-    public double getGradeToNumber() {
+    private double getGradeToNumber() {
         double gradeInt = 0;
         switch (this.grade) {
             case "A+":

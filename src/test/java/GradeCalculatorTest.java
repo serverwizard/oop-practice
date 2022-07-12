@@ -1,4 +1,5 @@
 import org.example.grade.domain.Course;
+import org.example.grade.domain.Courses;
 import org.example.grade.domain.GradeCalculator;
 import org.example.grade.domain.GradeResult;
 import org.example.grade.ui.ConsoleOutputUI;
@@ -18,7 +19,7 @@ public class GradeCalculatorTest {
                 new Course("중국어회화", Course.GENERAL_CREDIT, "C"));
 
         // when
-        GradeCalculator gradeCalculator = new GradeCalculator(courses);
+        GradeCalculator gradeCalculator = new GradeCalculator(new Courses(courses));
         GradeResult gradeResult = gradeCalculator.calculateGrade();
 
         // then
